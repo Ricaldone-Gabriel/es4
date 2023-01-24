@@ -24,6 +24,7 @@ import javax.swing.JTextField;
  */
 public class GUI2 extends JFrame {
     
+    boolean game = true;
     int contPari, contDispari;
     JButton[][] A = new JButton[6][6];
     JLabel[][] Testo = new JLabel[6][6];
@@ -71,14 +72,18 @@ public class GUI2 extends JFrame {
         public void actionPerformed(ActionEvent E) {
             int j = 0, i, n = 0;
             
-            for (i = 0; i < 6; i++) {
-                for (j = 0; j < 6; j++) {
-                    if(E.getSource() == A[i][j]) {
-                        A[i][j].setVisible(false);
-                        Testo[i][j].setVisible(true);
+            if (game) {
+                for (i = 0; i < 6; i++) {
+                    for (j = 0; j < 6; j++) {
+                        if(E.getSource() == A[i][j]) {
+                            A[i][j].setVisible(false);
+                            Testo[i][j].setVisible(true);
+                            if(Integer.parseInt(Testo[i][j].getText()) % 2 == 1) {
+                                game = false;
+                            }
+                        }
                     }
                 }
-
             }
             
         }
